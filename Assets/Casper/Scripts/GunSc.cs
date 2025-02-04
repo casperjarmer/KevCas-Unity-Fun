@@ -1,6 +1,6 @@
-using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
+using UnityEngine;
 
 public class GunSc : MonoBehaviour
 {
@@ -21,8 +21,21 @@ public class GunSc : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space)){
-            GameObject bulletClone = Instantiate(bullet,barrelHole.position,quaternion.identity);
+            GameObject bulletClone = Instantiate(bullet,barrelHole.position,Quaternion.identity);
             bulletClone.GetComponent<Rigidbody>().AddForce(transform.forward*bulletSpeed,ForceMode.Impulse);
         }
+
+        LookAtMouse();
+
+
+
+    }
+    void LookAtMouse(){
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 100)){
+            transform.LookAt(hit.point);
+        }
+        
     }
 }
