@@ -61,3 +61,6 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+#Ignore ProjectSettings and UserSettings files
+ProjectSettings/ShaderGraphSettings.asset
+UserSettings/EditorUserSettings.asset
