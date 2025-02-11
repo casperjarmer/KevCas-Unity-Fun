@@ -1,26 +1,34 @@
 using UnityEngine;
 
-public class MachineGun : MonoBehaviour
+public class RifleScript : MonoBehaviour
 {
+
+
     public float range = 100f;
     public float fireRate = 10f;
     public Camera fpsCam;
 
-    public ParticleSystem muzzleFlash; // Assign in Inspector
-    public GameObject impactEffect; // Assign in Inspector
-    public Animator gunAnimator; // Assign in Inspector
-    public GameObject bloodEffect; // Assign in Inspector
+ public ParticleSystem muzzleFlash; // Assign in Inspector
+public GameObject impactEffect; // Assign in Inspector
 
-    private float nextTimeToFire = 0f;
+public GameObject bloodEffect; // Assign in Inspector
 
+
+private float nextTimeToFire = 0f;
+
+ //public Animator gunAnimator; // Assign in Inspector
+
+
+    // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
+           if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
         {
             nextTimeToFire = Time.time + 1f / fireRate;
             Shoot();
         }
     }
+
 
     void Shoot()
     {
@@ -29,10 +37,10 @@ public class MachineGun : MonoBehaviour
             muzzleFlash.Play(); // Play muzzle flash effect
         }
 
-        if (gunAnimator != null)
-        {
-            gunAnimator.SetTrigger("Recoil"); // Play recoil animation
-        }
+        //if (gunAnimator != null)
+        //{
+        //    gunAnimator.SetTrigger("Recoil"); // Play recoil animation
+        //}
 
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
